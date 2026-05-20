@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/users")
@@ -63,6 +66,27 @@ public class UserController {
     // Usando Named Queries
     @GetMapping("/searchbyname/{name}")
     public List<User> searchByName(@PathVariable String name) {
+        return service.searchByName(name);
+    }
+    
+    @GetMapping("/buscarpornombre")
+    public List<User> buscarPorNombre(@RequestParam String name, HttpServletRequest request) {
+    	// URL completa
+        System.out.println("URL: " + request.getRequestURL());
+
+        // Query params
+        System.out.println("Query: " + request.getQueryString());
+
+        // Método HTTP
+        System.out.println("Método: " + request.getMethod());
+
+        // Headers
+        Enumeration<String> headers = request.getHeaderNames();
+
+        while (headers.hasMoreElements()) {
+            String header = headers.nextElement();
+            System.out.println(header + ": " + request.getHeader(header));
+        }
         return service.searchByName(name);
     }
 
