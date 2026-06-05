@@ -2,6 +2,8 @@ package com.example.demo.dto;
 
 import java.time.LocalDate;
 
+import com.example.demo.model.Marca;
+
 public class VehiculoDTO {
 
 	private String serie;
@@ -9,6 +11,16 @@ public class VehiculoDTO {
 	private LocalDate fechacompra;
 	private Integer marcarId;
 	
+	private Marca marca;
+	
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
 	public String getSerie() {
 		return serie;
 	}
